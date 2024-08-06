@@ -1,0 +1,20 @@
+{% extends 'Principal/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>   
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Página en construccion</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">En construcción...</li>
+        </ol>        
+        <div>
+           <img src="{% static 'Principal/assets/img/fondo.png' %}" alt="logo de nails factory" style="width:1080px;height:577px;"> 
+        </div>
+        <div style="height: 100vh"></div>
+        <div class="card mb-4"><div class="card-body">Pagina en construcción</div></div>
+    </div>
+</main>
+    {% endblock main %}
