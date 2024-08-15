@@ -63,3 +63,8 @@ def inicio(request):
 @login_required
 def blanco(request):
     return render(request, "core/blanco.html")
+
+@login_required
+def aboutme(request):
+    return render(request, "core/about.html")
+

@@ -11241,3 +11241,14 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+.img-avatar {
+  text-align: center;
+}
+
+.mi-background {
+  background-image: url(core/assets/img/fondo.png); 
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+ }

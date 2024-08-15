@@ -78,41 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Servicios Vigentes
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Duracion</th>                                           
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Duracion</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        {%if tabla_servicios %}
-                                            {%for servicio in tabla_servicios %}
-                                                <tr>
-                                                    <td> {{servicio.ser_nombre}} </td>
-                                                    <td> {{servicio.ser_descripcion}}</td>
-                                                    <td> {{servicio.ser_duracion}}</td>
-                                                </tr>
-                                            {% endfor %}                                        
-                                        {% endif %}                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        
                     </div>
                 </main>               
     {% endblock main %}

@@ -47,6 +47,10 @@ Aclaraciones:
           registrados; a futuro, la tabla tendra solo los insumos con stock minimo. Se pinta de azul cuando todos los insumos tienen un stock recomendado. se pinta de rojo
           cuando al menos 1 insumo tiene menos del stock minimo.
 
+    - Dentro del repositorio, en la carpeta others se encontrarán imagenes para Avatars, Atenciones, y el video explicativo sobre el funcioamiento del sitio 
+    - Se podrán ejecutar las pruebas unitarias, validando la creacion y eliminacion de Servcios, Gastos, Marcas e Insumos, con el siguiente comando: python manage.py test
+    - En la seccion "Acerma de mi" se ecuentra mi presentacion
+    
 
 usuarios de prueba:
 pruebaAdmin - p1234567 - Administrador

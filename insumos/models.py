@@ -5,6 +5,7 @@ class Marca(models.Model):
     mar_nombre = models.CharField(max_length=50, unique=True)
     mar_descripcion = models.CharField(max_length=100,null=True)
     mar_fecha_alta = models.DateTimeField(null=True)
+    #mar_fecha_alta =  models.DateField(null=True,default=datetime.today)
 
     def get_nombre(self):
         return self.mar_nombre
