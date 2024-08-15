@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <div style="height: 2vh"></div>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Todos los insumos</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                   
+                <h1 class="mt-0 px-3">Insumos</h1>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Stock Actual</th>
+                                <th>Stock Minimo</th>
+                                <th>Stock Maximo</th>
+                                <th>Unidad de medida</th>
+                                <th>Contenido</th>
+                                <th>Descripcion</th>                                
+                                <th>Editar</th> 
+                                <th>Eliminar</th>                                          
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Stock Actual</th>
+                                <th>Stock Minimo</th>
+                                <th>Stock Maximo</th>
+                                <th>Unidad de medida</th>
+                                <th>Contenido</th>
+                                <th>Descripcion</th>                                
+                                <th>Editar</th> 
+                                <th>Eliminar</th> 
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if insumos %}
+                                {%for insumo in insumos %}
+                                    <tr>
+                                        <td> {{insumo.ins_codigo}} </td>
+                                        <td> {{insumo.ins_nombre}} </td>
+                                        <td> {{insumo.ins_marca.mar_nombre}} </td>                                  
+                                        <td> {{insumo.ins_stock_actual}} </td>
+                                        <td> {{insumo.ins_stock_minimo}} </td>
+                                        <td> {{insumo.ins_stock_maximo}} </td>
+                                        <td> {{insumo.ins_unidad_medida}} </td>
+                                        <td> {{insumo.ins_contenido}} </td>                                       
+                                        <td> {{insumo.ins_descripcion}}</td> 
+                                        <td> <a href="{% url 'ModificarInsumo' insumo.pk%}">Editar</a></td>
+                                        <td> <a href="{% url 'BorrarInsumo' insumo.pk%}">Eliminar</a></td>
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}    
+                        </tbody>
+                    </table>                                      
+                </div>                 
+            </div>
+        </div>
+        <div class="container-fluid px-1">
+            <div class="d-flex align-items-left justify-content-between small">                
+                <div>  
+                    <a class="btn btn-primary" href="{% url 'NuevoInsumo' %}" role="button">Agregar Insumo</a> 
+                    <a class="btn btn-primary" href="{% url 'ListadoMarcas' %}" role="button">Agregar Marca de Insumos</a> 
+                </div>
+            </div>
+        </div>
+        <div style="height: 2vh"></div>
+    </div>
+</main>
+    {% endblock main %}

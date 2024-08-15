@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Insumos</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoInsumos' %}">Todos los insumos</a></li>       
+            <li class="breadcrumb-item active">Eliminar</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="mb-0">
+                    En esta pagina eliminaremos <code>insumos</code>
+                </p>
+                <p class="mb-0">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% if insumo %}
+                        Estas seguro que deseas borrar el insumo {{insumo.get_nombre}} - descripcion {{insumo.get_descripcion}}??
+                        <input type="submit" value="Eliminar">   
+                        {%endif%}                        
+                    </form>
+                </p>    
+            </div>
+        </div>
+    </div>
+</main>
+    {% endblock main %}

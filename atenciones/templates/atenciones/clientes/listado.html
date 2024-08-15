@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <div style="height: 2vh"></div>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoAtenciones' %}">Todas las Atenciones</a></li>
+            <li class="breadcrumb-item active">Todas los Clientes</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                   
+                <h1 class="mt-0 px-3">Clientes</h1>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>      
+                                <th>Documento</th>                          
+                                <th>Nombre</th>
+                                <th>Apellido</th>         
+                                <th>Celular</th>       
+                                <th>Email</th>       
+                                <th>Red Social</th>       
+                                <th>Domicilio</th>       
+                                <th>Fecha de Nacimiento</th>                                                            
+                                <th>Editar</th> 
+                                <th>Eliminar</th>                                          
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>                                
+                                <th>Documento</th>                          
+                                <th>Nombre</th>
+                                <th>Apellido</th>         
+                                <th>Celular</th>       
+                                <th>Email</th>       
+                                <th>Red Social</th>       
+                                <th>Domicilio</th>       
+                                <th>Fecha de Nacimiento</th>                                                            
+                                <th>Editar</th> 
+                                <th>Eliminar</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if clientes %}
+                                {%for cliente in clientes %}
+                                    <tr>    
+                                        <td> {{cliente.cli_dni}} </td>                                  
+                                        <td> {{cliente.cli_nombre}} </td>
+                                        <td> {{cliente.cli_apellido}} </td> 
+                                        <td> {{cliente.cli_celular}} </td> 
+                                        <td> {{cliente.cli_email}} </td> 
+                                        <td> {{cliente.cli_red_social}} </td> 
+                                        <td> {{cliente.cli_domicilio}} </td> 
+                                        <td> {{cliente.cli_fecha_nacimiento}} </td> 
+                                        <td> <a href="{% url 'ModificarCliente' cliente.pk%}">Editar</a></td>
+                                        <td> <a href="{% url 'BorrarCliente' cliente.pk%}">Eliminar</a></td>
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}    
+                        </tbody>
+                    </table>                                      
+                </div>                 
+            </div>
+        </div>
+        <div class="container-fluid px-1">
+            <div class="d-flex align-items-left justify-content-between small">                
+                <div>  
+                    <a class="btn btn-primary" href="{% url 'NuevoCliente' %}" role="button">Agregar Cliente</a>                     
+                </div>
+            </div>
+        </div>
+        <div style="height: 2vh"></div>
+    </div>
+</main>
+    {% endblock main %}

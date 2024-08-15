@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Formas de Pago</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoAtenciones' %}">Todas las Atenciones</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoFormaPago' %}">Todas las Formas de Pago</a></li>     
+            <li class="breadcrumb-item active">Agregar</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="mb-0">
+                    En esta pagina registraremos <code>Formas de Pago</code>
+                </p>
+                <p class="mb-0">
+                    <form action="" method="POST">
+                         {% csrf_token %}
+                        <table>
+                            {{ mi_formulario.as_table }}
+                        </table>
+                        <input type="submit" value="Enviar">    
+                    </form>            
+                </p>   
+                <p class="mb-0">
+                    <div id="content">
+                        {% include 'atenciones/messages.html' %}
+                    </div>
+                </p> 
+            </div>
+        </div>
+       
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function(){
+            if($('#msg').length > 0) {
+                $('#msg').fadeOut('slow');
+            }
+        }, 2000);
+    </script>
+</main>
+    {% endblock main %}

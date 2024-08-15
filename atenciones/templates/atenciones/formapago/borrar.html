@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Formas de Pagos</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoAtenciones' %}">Todas las Atenciones</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoFormaPago' %}">Todas las Formas de Pago</a></li>     
+            <li class="breadcrumb-item active">Eliminar</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="mb-0">
+                    En esta pagina eliminaremos <code>formas de pago</code>
+                </p>
+                <p class="mb-0">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% if formapago %}
+                        Estas seguro que deseas borrar la Forma de Pago: {{formapago.get_nombre}} - Interes: {{formapago.get_interes}}??
+                        <input type="submit" value="Eliminar">   
+                        {%endif%}                        
+                    </form>
+                </p>  
+                <p class="mb-0">
+                    <div id="content">
+                        {% include 'insumos/messages.html' %}
+                    </div>
+                </p>   
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function(){
+            if($('#msg').length > 0) {
+                $('#msg').fadeOut('slow');
+            }
+        }, 2000);
+    </script>
+</main>
+    {% endblock main %}

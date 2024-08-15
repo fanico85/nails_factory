@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Gastos</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Buscar</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="mb-0">
+                    En esta pagina registraremos <code>gastos</code>
+                </p>
+                <p class="mb-0">
+                    <form action="" method="POST">
+                        {% csrf_token %}  
+                        {{form.as_p}}
+                        <input type="submit" value="Registrar">   
+                    </form>
+                </p>    
+            </div>
+        </div>
+        <div style="height: 100vh"></div>
+        <div class="card mb-4"><div class="card-body">Sitio en construcción</div></div>
+    </div>
+</main>
+    {% endblock main %}

@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Gastos</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="#">Buscar</a></li>
+            <li class="breadcrumb-item active">Resultado</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="mb-0">
+                    Estamos listando todos los 
+                    <code>gastos</code>
+                   a través de vistas                   
+                </p>
+                <p></p>     
+
+                <div> 
+                    <a href="{% url 'NuevoGasto' %}">Registrar un nuevo gasto</a>
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Monto</th>  
+                                <th>Fecha</th>  
+                                <th>Editar</th> 
+                                <th>Eliminar</th>                                          
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Monto</th>  
+                                <th>Fecha</th>  
+                                <th>Editar</th> 
+                                <th>Eliminar</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if gastos %}
+                                {%for gasto in gastos %}
+                                    <tr>
+                                        <td> {{gasto.gas_nombre}} </td>
+                                        <td> {{gasto.gas_descripcion}}</td>
+                                        <td> {{gasto.gas_monto}}</td>
+                                        <td> {{gasto.gas_fecha}}</td>
+                                        <td> <a href="{% url 'ModificarGasto' gasto.pk%}">Editar</a></td>
+                                        <td> <a href="{% url 'BorrarGasto' gasto.pk%}">Eliminar</a></td>
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}    
+                        </tbody>
+                    </table>                                      
+                </div>
+            </div>
+        </div>
+        <div style="height: 100vh"></div>
+        <div class="card mb-4"><div class="card-body">Sitio en construcción</div></div>
+    </div>
+</main>
+    {% endblock main %}

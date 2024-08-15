@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <div style="height: 2vh"></div>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoAtenciones' %}">Todas las Atenciones</a></li>
+            <li class="breadcrumb-item active">Todas las Formas de Pagos</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                   
+                <h1 class="mt-0 px-3">Formas de Pagos</h1>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>                                
+                                <th>Nombre</th>
+                                <th>Interes</th>                                                              
+                                <th>Editar</th> 
+                                <th>Eliminar</th>                                          
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>                                
+                                <th>Nombre</th>
+                                <th>Interes</th>                                                            
+                                <th>Editar</th> 
+                                <th>Eliminar</th> 
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if formapagos %}
+                                {%for formapago in formapagos %}
+                                    <tr>                                      
+                                        <td> {{formapago.fp_nombre}} </td>
+                                        <td> {{formapago.fp_interes}} </td> 
+                                        <td> <a href="{% url 'ModificarFormaPago' formapago.pk%}">Editar</a></td>
+                                        <td> <a href="{% url 'BorrarFormaPago' formapago.pk%}">Eliminar</a></td>
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}    
+                        </tbody>
+                    </table>                                      
+                </div>                 
+            </div>
+        </div>
+        <div class="container-fluid px-1">
+            <div class="d-flex align-items-left justify-content-between small">                
+                <div>  
+                    <a class="btn btn-primary" href="{% url 'NuevoFormaPago' %}" role="button">Agregar Forma de Pago</a>                     
+                </div>
+            </div>
+        </div>
+        <div style="height: 2vh"></div>
+    </div>
+</main>
+    {% endblock main %}

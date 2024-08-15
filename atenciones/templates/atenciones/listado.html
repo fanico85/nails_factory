@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <div style="height: 2vh"></div>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Todas las Atenciones</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                   
+                <h1 class="mt-0 px-3">Atenciones</h1>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th> 
+                                <th>Numero</th>                                
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Cantidad</th>
+                                <th>Monto</th>
+                                <th>Forma de Pago</th>
+                                <th>Usuario</th> 
+                                <th>Observaciones</th>                                       
+                                <th>Editar</th>                                                                       
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Numero</th>                                
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Cantidad</th>
+                                <th>Monto</th>
+                                <th>Forma de Pago</th>
+                                <th>Usuario</th> 
+                                <th>Observaciones</th>                                       
+                                <th>Editar</th>                                
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if atenciones %}
+                                {%for atencion in atenciones %}
+                                    <tr>
+                                        <td> {{atencion.ate_fecha}} </td>
+                                        <td> {{atencion.ate_numero}} </td>
+                                        <td> {{atencion.ate_cliente}} </td>
+                                        <td> {{atencion.ate_servicio}} </td>
+                                        <td> {{atencion.ate_cantidad}} </td>
+                                        <td> {{atencion.ate_monto}} </td>      
+                                        <td> {{atencion.ate_forma_pago}} </td>    
+                                        <td> {{atencion.ate_usuario}} </td>                            
+                                        <td> {{atencion.ate_observacion}} </td>                                                                               
+                                        <td> <a href="{% url 'ModificarAtencion' atencion.pk%}">Editar</a></td>                                       
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}   
+                        </tbody>
+                    </table>                                      
+                </div>                 
+            </div>
+        </div>
+        <div class="container-fluid px-1">
+            <div class="d-flex align-items-left justify-content-between small">                
+                <div>  
+                    <a class="btn btn-primary" href="{% url 'NuevoAtencion' %}" role="button">Registrar Atención</a> 
+                    <a class="btn btn-primary" href="{% url 'ListadoCliente' %}" role="button">Agregar Clientes</a> 
+                    <a class="btn btn-primary" href="{% url 'ListadoFormaPago' %}" role="button">Agregar Formas de Pago</a> 
+                </div>
+            </div>
+        </div>
+        <div style="height: 2vh"></div>
+    </div>
+</main>
+    {% endblock main %}
