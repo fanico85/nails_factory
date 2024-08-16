@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from atenciones.models import *
@@ -10,13 +11,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models.deletion import ProtectedError
 from django.db import IntegrityError
 
-
-
 # Create your views here.
 @login_required
 def atencion_formulario(request):
     if request.method == "POST":
-        mi_form = AtencionFormulario(request.POST) #Aqui me llega la info del html
+        mi_form = AtencionFormulario(request.POST,request.FILES) #Aqui me llega la info del html
        
         if mi_form.is_valid():
             info = mi_form.cleaned_data
@@ -30,8 +29,8 @@ def atencion_formulario(request):
                                 ate_servicio = info["atencion_servicio"],
                                 ate_forma_pago = info["atencion_forma_pago"],
                                 ate_cantidad = info["atencion_cantidad"],
-                                ate_usuario = info["atencion_usuario"])
-            
+                                ate_usuario = info["atencion_usuario"],
+                                ate_imagen = info["atencion_imagen"])            
             try:
                 atencion.save() 
                 print("llegaaaa atencion")
@@ -54,11 +53,15 @@ class AtencionListView(LoginRequiredMixin,ListView):
     context_object_name = "atenciones"
     template_name = "atenciones/listado.html"
 
+class AtencionDetailView(LoginRequiredMixin,DetailView):
+    model = Atencion   
+    template_name = "atenciones/detalle.html"
+
 class AtencionUpdateView(LoginRequiredMixin,UpdateView):
     model = Atencion
     template_name = "atenciones/modificar.html"
     success_url = reverse_lazy('ListadoAtenciones')
-    fields = ['ate_fecha','ate_numero', 'ate_cliente', 'ate_servicio','ate_cantidad','ate_monto','ate_forma_pago','ate_usuario','ate_observacion']
+    fields = ['ate_fecha','ate_numero', 'ate_cliente', 'ate_servicio','ate_cantidad','ate_monto','ate_forma_pago','ate_usuario','ate_observacion','ate_imagen']
 
 class FormaPagoListView(LoginRequiredMixin,ListView):
     model = FormaPago

@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <div style="height: 2vh"></div>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Todos los usuarios</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                   
+                <h1 class="mt-0 px-3">Usuarios</h1>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Rol</th>                                                              
+                                <th>Editar</th>                                                               
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Rol</th>                                                              
+                                <th>Editar</th>                                   
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {%if usuarios %}
+                                {%for usuario in usuarios %}
+                                    <tr>
+                                        <td> {{usuario.username}} </td>
+                                        <td> {{usuario.first_name}} </td>
+                                        <td> {{usuario.last_name}} </td>
+                                        <td> {{usuario.email}} </td>  
+                                        <td>
+                                        {% for grupo in usuario.groups.all %}
+                                         {{grupo.name}}
+                                        {%endfor%}
+                                        </td>                                         
+                                        <td> <a href="{% url 'ModificarRol' usuario.pk%}">Editar</a></td>    
+                                    </tr>
+                                {% endfor %}                                        
+                            {% endif %}    
+                        </tbody>
+                    </table>                                      
+                </div>                 
+            </div>
+        </div>       
+        <div style="height: 2vh"></div>
+    </div>
+</main>
+    {% endblock main %}

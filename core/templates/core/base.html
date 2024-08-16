@@ -49,40 +49,67 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tablero
                             </a>
+                            
                             <div class="sb-sidenav-menu-heading">Interfaz</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Servicios
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>                                
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoServicios' %}">Todos los servicios</a>
-                                    <a class="nav-link" href="{% url 'NuevoServicio' %}">Agregar</a>  
-                                </nav>
-                            </div>                             
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gastos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoGastos' %}">Todos los gastos</a>
-                                    <a class="nav-link" href="{% url 'NuevoGasto' %}">Agregar</a>                                    
-                                </nav>
-                            </div>    
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Insumos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoInsumos' %}">Todos los Insumos</a>
-                                    <a class="nav-link" href="{% url 'NuevoInsumo' %}">Agregar</a>
-                                </nav>
-                            </div>  
+                            
+                            {% if request.user.is_authenticated %} 
+                                {% for grupo in request.user.groups.all %}
+                                    {% if  grupo.name == "Administrador"%}
+                                    
+                                    
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                        Usuarios
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapsePages3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoCuentas' %}">Todos los Usuarios</a>                                            
+                                        </nav>
+                                    </div>  
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        Servicios
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>                                
+                                    </a>
+                                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoServicios' %}">Todos los servicios</a>
+                                            <a class="nav-link" href="{% url 'NuevoServicio' %}">Agregar</a>  
+                                        </nav>
+                                    </div>   
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        Gastos
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoGastos' %}">Todos los gastos</a>
+                                            <a class="nav-link" href="{% url 'NuevoGasto' %}">Agregar</a>                                    
+                                        </nav>
+                                    </div>    
+                                    
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                        Insumos
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoInsumos' %}">Todos los Insumos</a>
+                                            <a class="nav-link" href="{% url 'NuevoInsumo' %}">Agregar</a>
+                                        </nav>
+                                    </div>                                    
+
+                                    {%endif%}
+                                {% endfor %} 
+                            {%endif%}
+
+                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Atenciones
@@ -94,44 +121,18 @@
                                     <a class="nav-link" href="{% url 'NuevoAtencion' %}">Agregar</a>
                                 </nav>
                             </div>    
-
-                            <!--div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div-->
-                            <div class="sb-sidenav-menu-heading">COMPLEMENTOS</div>
-                            <a class="nav-link" href="{% url 'Blanco' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Graficos
-                            </a>
+                         
                             
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Usuario conectado: 
-                        {% if request.user.is_authenticated %} {{ request.user.first_name }}</div>
+                        {% if request.user.is_authenticated %} 
+                            {{ request.user.first_name }} 
+                            {% for grupo in request.user.groups.all %} 
+                                    {{ grupo.name }}                            
+                            {% endfor %}                     
+                    </div>
                         <div class="align-items-left small">
                             
                         </div>   

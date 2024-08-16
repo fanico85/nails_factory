@@ -3,8 +3,6 @@ from servicios.models import Servicio
 from django.contrib.auth.models import User
 from django.utils.timezone import datetime
 
-
-
 # Create your models here.
 class Cliente(models.Model):
     cli_dni = models.IntegerField(unique=True)
@@ -70,6 +68,7 @@ class Atencion(models.Model):
     ate_forma_pago = models.ForeignKey(FormaPago, on_delete=models.RESTRICT) 
     ate_cantidad = models.IntegerField(default=1)  
     ate_usuario = models.ForeignKey(User, on_delete=models.PROTECT) 
+    ate_imagen = models.ImageField(upload_to="atenciones", blank=True, null=True)
 
     def get_numero(self):
         return self.ate_numero
@@ -97,6 +96,9 @@ class Atencion(models.Model):
     
     def get_usuario(self):
         return self.ate_usuario
+    
+    def get_imagen(self):
+        return self.ate_imagen
        
     def __str__(self):
         return f"Numero: {self.ate_numero}"

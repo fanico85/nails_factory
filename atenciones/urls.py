@@ -5,6 +5,7 @@ urlpatterns = [
     path('atenciones/listado', views.AtencionListView.as_view(),name= "ListadoAtenciones"),
     path('atenciones/<pk>/modificar', views.AtencionUpdateView.as_view(),name= "ModificarAtencion"),     
     path('atenciones/nuevo', views.atencion_formulario,name= "NuevoAtencion"),
+    path('atenciones/<pk>', views.AtencionDetailView.as_view(),name= "DetalleAtencion"),
     path('atenciones/formapago/listado', views.FormaPagoListView.as_view(),name= "ListadoFormaPago"),
     path('atenciones/formapago/<pk>/borrar', views.DeleteFormaPago,name= "BorrarFormaPago"),    
     path('atenciones/formapago/<pk>/modificar', views.FormaPagoUpdateView.as_view(),name= "ModificarFormaPago") , 

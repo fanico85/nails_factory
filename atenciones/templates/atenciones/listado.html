@@ -26,7 +26,7 @@
                                 <th>Forma de Pago</th>
                                 <th>Usuario</th> 
                                 <th>Observaciones</th>                                       
-                                <th>Editar</th>                                                                       
+                                <th>Detalle</th>                                                                                                         
                             </tr>
                         </thead>
                         <tfoot>
@@ -40,7 +40,7 @@
                                 <th>Forma de Pago</th>
                                 <th>Usuario</th> 
                                 <th>Observaciones</th>                                       
-                                <th>Editar</th>                                
+                                <th>Detalle</th>            
                             </tr>
                         </tfoot>
                         <tbody>
@@ -55,8 +55,8 @@
                                         <td> {{atencion.ate_monto}} </td>      
                                         <td> {{atencion.ate_forma_pago}} </td>    
                                         <td> {{atencion.ate_usuario}} </td>                            
-                                        <td> {{atencion.ate_observacion}} </td>                                                                               
-                                        <td> <a href="{% url 'ModificarAtencion' atencion.pk%}">Editar</a></td>                                       
+                                        <td> {{atencion.ate_observacion}} </td> 
+                                        <td> <a href="{% url 'DetalleAtencion' atencion.pk%}">Detalle</a></td>   
                                     </tr>
                                 {% endfor %}                                        
                             {% endif %}   

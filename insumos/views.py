@@ -1,6 +1,5 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from insumos.models import *
 from insumos.forms import *
