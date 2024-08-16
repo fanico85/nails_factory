@@ -10,7 +10,7 @@
         <title>Dashboard - Nails Factory</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>        
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -20,29 +20,24 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            {% if request.user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'Modificar' %}">Mi cuenta </a></li>                        
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'Login' %}">Ingresar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
+                            {% endif %}
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{% url 'Logout' %}">Salir</a></li>
+                            
+                        </ul>
+                    </li>
+                </ul>                
             </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        {% if request.user.is_authenticated %}
-                        <li><a class="dropdown-item" href="#!">Mi cuenta </a></li>
-                        <li><a class="dropdown-item" href="#!">Cambiar Password </a></li>
-                        {% else %}
-                        <li><a class="dropdown-item" href="{% url 'Login' %}">Ingresar</a></li>
-                        <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
-                        {% endif %}
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'Logout' %}">Salir</a></li>
-                        
-                    </ul>
-                </li>
-            </ul>
+        <!-- Navbar-->            
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -54,40 +49,67 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tablero
                             </a>
+                            
                             <div class="sb-sidenav-menu-heading">Interfaz</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Servicios
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>                                
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoServicios' %}">Todos los servicios</a>
-                                    <a class="nav-link" href="{% url 'NuevoServicio' %}">Agregar</a>  
-                                </nav>
-                            </div>                             
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gastos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoGastos' %}">Todos los gastos</a>
-                                    <a class="nav-link" href="{% url 'NuevoGasto' %}">Agregar</a>                                    
-                                </nav>
-                            </div>    
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Insumos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{% url 'ListadoInsumos' %}">Todos los Insumos</a>
-                                    <a class="nav-link" href="{% url 'NuevoInsumo' %}">Agregar</a>
-                                </nav>
-                            </div>  
+                            
+                            {% if request.user.is_authenticated %} 
+                                {% for grupo in request.user.groups.all %}
+                                    {% if  grupo.name == "Administrador"%}
+                                    
+                                    
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                        Usuarios
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapsePages3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoCuentas' %}">Todos los Usuarios</a>                                            
+                                        </nav>
+                                    </div>  
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        Servicios
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>                                
+                                    </a>
+                                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoServicios' %}">Todos los servicios</a>
+                                            <a class="nav-link" href="{% url 'NuevoServicio' %}">Agregar</a>  
+                                        </nav>
+                                    </div>   
+
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        Gastos
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoGastos' %}">Todos los gastos</a>
+                                            <a class="nav-link" href="{% url 'NuevoGasto' %}">Agregar</a>                                    
+                                        </nav>
+                                    </div>    
+                                    
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                        Insumos
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="{% url 'ListadoInsumos' %}">Todos los Insumos</a>
+                                            <a class="nav-link" href="{% url 'NuevoInsumo' %}">Agregar</a>
+                                        </nav>
+                                    </div>                                    
+
+                                    {%endif%}
+                                {% endfor %} 
+                            {%endif%}
+
+                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Atenciones
@@ -99,67 +121,43 @@
                                     <a class="nav-link" href="{% url 'NuevoAtencion' %}">Agregar</a>
                                 </nav>
                             </div>    
-
-                            <!--div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div-->
-                            <div class="sb-sidenav-menu-heading">COMPLEMENTOS</div>
-                            <a class="nav-link" href="{% url 'Blanco' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Graficos
-                            </a>
-                            <a class="nav-link" href="{% url 'Blanco' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tablas
-                            </a>
+                         
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Conectado como:</div>
-                        {% if request.user.is_authenticated %}
-                         {{ request.user.first_name }}
+                        <div class="small">Usuario conectado: 
+                        {% if request.user.is_authenticated %} 
+                            {{ request.user.first_name }} 
+                            {% for grupo in request.user.groups.all %} 
+                                    {{ grupo.name }}                            
+                            {% endfor %}                     
+                    </div>
+                        <div class="align-items-left small">
+                            
+                        </div>   
+                        <div style="height: 1vh"></div>
+                        <div class="img-avatar">
+                            <img src="{{request.user.avatar.imagen.url}}" alt="" heigth="40px">
+                        </div>                         
                         {% else %}
                         NONE
                         {% endif %}
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
+        <div id="layoutSidenav_content">
     {% block main %}
          
     {% endblock main %}        
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; My Website 2024</div>
-                <div>
-                    <a href="#">Politica de privacidad</a>
-                    &middot;
-                    <a href="#">Terminos &amp; Condiciones de uso</a>
-                </div>
+    <footer class="py-2 bg-light mt-auto">
+        <div class="container-fluid px-4">           
+            <div class="d-flex align-items-left small">                
+                <div> 
+                    <a href="{% url 'About' %}"> Acerca de mi</a> 
+                    <p></p>
+                    <div class="text-muted">Copyright &copy; My Website 2024</div>
+                </div>                
             </div>
         </div>
     </footer>

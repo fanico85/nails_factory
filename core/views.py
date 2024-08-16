@@ -6,15 +6,8 @@ from servicios.models import Servicio
 from gastos.models import Gasto
 from atenciones.models import Atencion
 from django.db.models import F
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 
 # Create your views here.
-
-#agregar como parametro de entrada en las clases basdas en vistas (LoginRequiredMixin,ListView)
-
 @login_required
 def inicio(request):   
     if request.method == "GET":
@@ -27,9 +20,9 @@ def inicio(request):
         for gasto in gastos:                     
             suma += gasto.gas_monto     
         
-        if suma > 700000 and suma < 720000:
+        if suma > 100000 and suma < 200001:
             color_tarj_gastos = "card bg-warning text-white mb-4"
-        elif suma > 720000:
+        elif suma > 200000:
             color_tarj_gastos = "card bg-danger text-white mb-4"
 
         #INSUMOS
@@ -46,7 +39,8 @@ def inicio(request):
 
         #ATENCIONES   
         atenciones = Atencion.objects.all()
-        cont_atenciones = atenciones.__len__()        
+        cont_atenciones = atenciones.__len__()   
+           
 
         return render(request, "core/index.html",
                       {"tarjeta_gasto_total":suma, 
@@ -55,7 +49,8 @@ def inicio(request):
                        "tabla_servicios":servicios, 
                        "tarjeta_insumo_color":color_tarj_insumo, 
                        "tarjeta_insumo_cantidad":cont_insumos,
-                       "tarjeta_atenciones_realizadas":cont_atenciones
+                       "tarjeta_atenciones_realizadas":cont_atenciones,
+                       "atenciones":atenciones
                        })
 
     return render(request, "core/index.html")
@@ -63,3 +58,8 @@ def inicio(request):
 @login_required
 def blanco(request):
     return render(request, "core/blanco.html")
+
+@login_required
+def aboutme(request):
+    return render(request, "core/about.html")
+

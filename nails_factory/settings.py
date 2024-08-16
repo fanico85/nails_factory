@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,3 +145,6 @@ MESSAGE_TAGS = {
 #SESSION_COOKIE_AGE = 60 # 600 segundos = 10 minutos
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True #cierre de sesion, al cerrar el explorador
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
