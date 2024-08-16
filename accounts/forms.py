@@ -13,7 +13,7 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "first_name", "last_name" , "email", "password1", "password2"]
-        help_text = {k: "" for k in fields}
+        help_text = {k: "" for k in fields} 
 
 class UserEditForm(UserChangeForm):
     password = None

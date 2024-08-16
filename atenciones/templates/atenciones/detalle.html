@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Atenciones</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'Inicio' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'ListadoAtenciones' %}">Todas las Atenciones</a></li>       
+            <li class="breadcrumb-item active">Detalle de la atención</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-body">                
+                <p class="mb-0">                   
+                    <div class="card" style="width: 18rem;">
+                        {%if atencion.ate_imagen %}                                                            
+                        <img src="{{atencion.ate_imagen.url}}" class="card-img-top" alt="..." heigth="10px"> 
+                        {% else %}
+                        <div style="height: 2vh"></div>
+                        <h5 class="card-title text-center ">No hay fotos registradas</h5>
+                        {% endif %}  
+                        <div class="card-body">
+                          <h5 class="card-title">Atención: {{atencion.ate_numero}}</h5>
+                          <p class="card-text small">Realizado el {{atencion.ate_fecha}} por <strong>{{atencion.ate_usuario}}</strong></p>
+                          <p class="card-text small">Servicio: {{atencion.ate_servicio}} ({{atencion.ate_cantidad}})</p>
+                          <p class="card-text small">Cliente: {{atencion.ate_cliente}} </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item small">Monto: ${{atencion.ate_monto}}</li>
+                          <li class="list-group-item small">Forma de pago:  {{atencion.ate_forma_pago}}</li>
+                          <li class="list-group-item small">Observaciones: {{atencion.ate_observacion}}</li>
+                        </ul>
+                        <div class="card-body">                
+                          <a href="{% url 'ModificarAtencion' atencion.pk%}" class="card-link">Editar</a>
+                        </div>
+                      </div>
+                </p>    
+            </div>
+        </div>  
+    </div>
+</main>
+    {% endblock main %}

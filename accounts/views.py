@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from accounts.forms import UserRegisterForm, UserEditForm
+from django.views.generic.edit import UpdateView
 from accounts.models import Avatar
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import ListView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -61,8 +64,21 @@ def editar_usuario(request):
     else:
         mi_form = UserEditForm(instance = usuario)
     
-    return render(request,"accounts/modificar.html",{"form":mi_form})
+    return render(request,"accounts/modificar.html",{"form":mi_form}) 
 
 class CambiarPassView(LoginRequiredMixin, PasswordChangeView):
     template_name = "accounts/password.html"
     success_url = reverse_lazy("Modificar")
+
+class CuentasListView(LoginRequiredMixin,ListView):
+    model = User
+    context_object_name = "usuarios"
+    template_name = "accounts/listado.html"
+
+class RolUpdateView(LoginRequiredMixin,UpdateView):
+    model = User
+    template_name = "accounts/rol.html"
+    success_url = reverse_lazy('ListadoCuentas')
+    fields = ['groups']
+
+

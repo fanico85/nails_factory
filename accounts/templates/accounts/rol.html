@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Editar Usuario {% endblock title %} 
+{% block title %} Editar Rol de usuario {% endblock title %} 
 
 {% block main %}  
                 <main>
@@ -14,7 +14,8 @@
                                      <div class="d-flex justify-content-center">
                                         <div class="d-flex flex-column">
                                             <p class="fs-5 fw-bold"> {{msg_register}} </p>
-                                            <form action="" method="POST" enctype="multipart/form-data">
+
+                                            <form action="" method="POST">
                                                 {% csrf_token %}
 
                                                 <div class="form-floating mb-3">                                                    
@@ -22,11 +23,13 @@
                                                 <input type="submit" value="Actualizar" name="actualizar">
                                                 </div>                                                
                                             </form>
+
+
                                         </div>  
                                     </div>
                                     <div class="card-footer text-center py-3">
                                         <div class="small"><a href="{% url 'Inicio' %}">Inicio</a></div>
-                                        <div class="small"><a href="{% url 'Contrasenia' %}">Actualizar contraseña</a></div>
+                                        <div class="small"><a href="{% url 'ListadoCuentas' %}">Ver todos los usuarios</a></div>
                                     </div>
                                 </div>
                             </div>
