@@ -1,0 +1,180 @@
+#creo entorno virtual en una nueva carpeta vacia que representará mi proyecto
+#Tercera_preentrega_Collado
+
+#valido que version tengo de python y de Django
+python --version 
+python -m django --version
+
+#creamos entorno virtual con python 3.11.9
+pipenv --python 3.11.9
+pipenv  shell
+
+#para imagenes seguramente falte Pillow
+python -m pip install Pillow
+
+#agregamos archivo requirements.txt con el siguiente contenido:
+# #Python 3.11.9
+# django==4.2.15
+
+#instalamos django en el entorno virtual
+pipenv install -r requirements.txt
+
+#creamos un proyecto nuevo de Django
+django-admin startproject nails_factory
+cd nails_factory
+
+#creamos la primera aplicacion
+python manage.py startapp Principal
+
+#levanta o genera una nueva base de datos 
+python manage.py migrate 
+
+#levantar proyecto en servidor y ctrl+C cerramos servidor para validar que funcione
+python manage.py runserver
+
+#en el settings.py configurar el nombre de la nueva aplicacion, por ejemplo Principal 
+
+#URLS 
+#copiarlas desde el original y hacer los imports en urls.py
+
+#creamos las vistas en views.py que renderizaran los archivos htmls
+
+#creamos la carpeta templates que contendra los htmls 
+
+#iniciamos git
+git init
+
+#creamos el archivo .gitignore con el contenido a ignorar:
+# __pycache__/
+# *.pyc
+
+#cargamos todos los archivos
+git add .
+
+#realizamos primer commit a main
+git commit -m "primer commit"
+
+#luego de crear o validar que exista el proyecto en github lo vinculamos con:
+git remote add origin https://github.com/fanico85/nails_factory.git
+
+#cambiamos por primera vez el nombre de la rama Master por main
+git branch -M main
+
+#subir ese primer codigo a git 
+git push -u origin main
+
+#creamos una rama nueva y nos ubicamos ahi
+git checkout -b rama_1
+
+#para movernos entre las ramas, hacemos:
+git checkout nombre_rama
+
+#volvemos a django, generamos una vista, creando el archivo views.py en la carpeta del proyecto y le importamos las librearias necesarias para que se ejecuten las funciones
+#en urls.py agregamos los paths que llaman a una determinada funcion de views
+
+#luego de guardar los cambios podemos levantar el servidor para validar el funcionamiento
+python manage.py runserver
+
+#podemos generar plantillas para separar la vista de la estética. Django se basa en el Modelo Vista Template
+#creamos en el proyecto la carpeta plantillas
+#luego dentro de plantillas creamos el archivo index.html o con el nombre que querramos
+#dentro del index.html ponemos ! y presionamos enter -> nos genera todo un contenido de HTML basico para completar, con header, body, estética
+#luego en views importamos las librearias necesarias para trabajar con Template
+#generaremos la funcion con lineas necesarias, como abrir el html, generar la plantilla, cerrar html, creamos el contexto, y renderizamos la plantilla
+
+#volvemos a git para guardar los cambios de la nueva rama
+#valimos el estado
+git status
+
+#enviamos la nueva rama con:
+git add .
+git commit -m "segundo commit"
+git push --set-upstream origin rama_18
+
+#si enviamos los cambios a una rama existente, seria:
+git add .
+git commit -m "segundo commit"
+git push
+
+#para mergear las ramas con el main, hacemos un pull request en github directamente 
+#si luego seguimos modificando el proyecto, lo vinculamos:
+git remote add origin https://github.com/fanico85/claseDjango.git
+
+#nos movemos a la rama correspondiente main u otra:
+git checkout main
+
+#traemos la data 
+git pull
+
+#creamos una rama nueva y nos ubicamos ahi
+git checkout -b rama_18
+
+#luego repetimos los mismos pasos 
+#enviamos la nueva rama con:
+git add .
+git commit -m "nuevo commit"
+git push --set-upstream origin rama_18
+
+#si enviamos los cambios a una rama existente, seria:
+git add .
+git commit -m "otro commit"
+git push
+
+#Ahora agregamos o creamos una nueva aplicacion
+python manage.py startapp NombreApi
+
+#se agrega el nombre de la app en settings.py y completa el modelo con las clases
+#procemos a generar el codigo necesario para migrarlos luego a la base
+python manage.py makemigrations Principal
+
+#migramos las tablas a la base con:
+python manage.py migrate
+
+
+#correr casos de pruebas de una aplicacion
+python manage.py test gastos
+
+
+#creamos super usuarios
+python manage.py createsuperuser  
+#admin y AB1234567
+admin@admin.com
+
+#usuarios 
+pruebagral -> general
+pruebacons -> consulta
+pruebaadmin -> administrador
+
+#password
+12345678ab
+
+facu y F1234567
+
+#Otros comandos
+#cuando queremos descargar todo un proyecto, se clona con
+git clone https://github.com/fanico85/claseDjango.git
+
+
+
+REVISAR
+- imagen que sea unica o borrar la que existen en avatar
+4- imagen de fondo de un html! y resto de htmls
+
+
+#PEDIENTES
+1- imagen en atencion 
+3 - agregar algun detalle de algo atenciones viendo la imagen
+5- video
+
+2- PErmisos, por grupo! {% if request.user.is_authenticated %}
+3- al registrarse un usuario, ira al inicio, pero no podrá ver nada hasta que un admin le asigne un rol
+cuando un admin vaya al inicio levantar de tablas usuarios quienen no tienen rol y mostrarselo para que lo asigne! 
+4- Contactar o mensajes a otros usuarios
+
+5- Reame
+comitear proyecto
+subir entrega
+
+
+
+s
